@@ -1,0 +1,38 @@
+<configuration>
+  <if condition='isDefined("NEW_RELIC_APP_NAME")'>
+    <then>
+      <appender name="STDOUT" class="ch.qos.logback.core.FileAppender">
+        <file>logs/logback-app.log</file>
+        <append>false</append>
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder class="com.newrelic.logging.logback.NewRelicEncoder">
+        </encoder>
+      </appender>
+    </then>
+  </if>
+
+  <if condition='isDefined("NEW_RELIC_APP_NAME")'>
+    <then>
+      <appender name="ASYNC" class="com.newrelic.logging.logback.NewRelicAsyncAppender">
+        <appender-ref ref="STDOUT"/>
+      </appender>
+    </then>
+  </if>
+  <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>%d %-5level [%thread] %logger{0}: %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="INFO">
+    <if condition='isDefined("NEW_RELIC_APP_NAME")'>
+      <then>
+        <appender-ref ref="ASYNC"/>
+      </then>
+    </if>
+    <appender-ref ref="Console"/>
+  </root>
+
+
+</configuration>

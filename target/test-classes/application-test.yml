@@ -1,0 +1,13 @@
+DB_HOST: ${embedded.mssqlserver.host}
+DB_PORT: ${embedded.mssqlserver.port}
+DB_NAME: ${embedded.mssqlserver.database}
+DB_USERNAME: ${embedded.mssqlserver.user}
+DB_PASSWORD: ${embedded.mssqlserver.password}
+
+
+platform:
+  api:
+    url: https://localhost:${wiremock.server.https-port}
+
+powerbi:
+  url: https://127.0.0.1:${wiremock.server.https-port}
