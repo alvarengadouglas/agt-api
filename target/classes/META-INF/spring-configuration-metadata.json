@@ -1,0 +1,57 @@
+{
+  "groups": [
+    {
+      "name": "application.agent.code",
+      "type": "com.betmotion.agentsmanagement.config.CodeConfiguration",
+      "sourceType": "com.betmotion.agentsmanagement.config.CodeConfiguration"
+    },
+    {
+      "name": "platform.api",
+      "type": "com.betmotion.agentsmanagement.platform.api.config.PlatformApiConfiguration",
+      "sourceType": "com.betmotion.agentsmanagement.platform.api.config.PlatformApiConfiguration"
+    },
+    {
+      "name": "powerbi",
+      "type": "com.betmotion.agentsmanagement.powerbi.config.PowerBiTokenConfiguration",
+      "sourceType": "com.betmotion.agentsmanagement.powerbi.config.PowerBiTokenConfiguration"
+    }
+  ],
+  "properties": [
+    {
+      "name": "application.agent.code.max-attempts",
+      "type": "java.lang.Integer",
+      "sourceType": "com.betmotion.agentsmanagement.config.CodeConfiguration"
+    },
+    {
+      "name": "platform.api.internal",
+      "type": "java.lang.String",
+      "sourceType": "com.betmotion.agentsmanagement.platform.api.config.PlatformApiConfiguration"
+    },
+    {
+      "name": "platform.api.private-key",
+      "type": "java.lang.String",
+      "sourceType": "com.betmotion.agentsmanagement.platform.api.config.PlatformApiConfiguration"
+    },
+    {
+      "name": "platform.api.url",
+      "type": "java.lang.String",
+      "sourceType": "com.betmotion.agentsmanagement.platform.api.config.PlatformApiConfiguration"
+    },
+    {
+      "name": "platform.api.verbose",
+      "type": "java.lang.String",
+      "sourceType": "com.betmotion.agentsmanagement.platform.api.config.PlatformApiConfiguration"
+    },
+    {
+      "name": "powerbi.body-params",
+      "type": "java.util.Map<java.lang.String,java.lang.Object>",
+      "sourceType": "com.betmotion.agentsmanagement.powerbi.config.PowerBiTokenConfiguration"
+    },
+    {
+      "name": "powerbi.url",
+      "type": "java.lang.String",
+      "sourceType": "com.betmotion.agentsmanagement.powerbi.config.PowerBiTokenConfiguration"
+    }
+  ],
+  "hints": []
+}

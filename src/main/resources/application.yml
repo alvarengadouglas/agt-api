@@ -1,0 +1,104 @@
+spring:
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  jpa:
+    database-platform: org.hibernate.dialect.SQLServer2008Dialect
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    properties:
+      batch_fetch_style: DYNAMIC
+      jdbc:
+        batch_size: 100
+      order_inserts: true
+      order_updates: true
+      format_sql: true
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:qwer@123}
+    #TODO Encryption is disabled, but must be implemented
+    url: jdbc:sqlserver://${DB_HOST:0.0.0.0}:${DB_PORT:1433};databaseName=${DB_NAME:master};sendStringParametersAsUnicode=false;encrypt=false;statementPoolingCacheSize=10;disableStatementPooling=false;enablePrepareOnFirstPreparedStatementCall=true;
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  redis:
+    host: localhost
+    port: 6379
+
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: 5672
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+    listener:
+      direct:
+        consumers-per-queue: 1
+
+server:
+  port: 8081
+
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include: health, info, env
+
+springfox:
+  documentation:
+    swagger-ui:
+      base-url: /swagger
+    open-api:
+      v3:
+        path: ${springfox.documentation.swagger-ui.base-url}/v3/api-docs
+
+authorization:
+  allowed-origins: http://localhost:${server.port},http://front-local.pulpobet.com:4200,http://front-local.agent.com:4200,http://localhost:4200/
+  service:
+    key: YWdlbnRzbWFuYWdlbWVudC1zaXRlOjFwdWUkQkU3bzhsbz42Iw==
+    check:
+      token:
+        url: http://localhost:8088/oauth/check_token
+
+application:
+  base-url: http://localhost:${server.port}
+  agent:
+    code:
+      maxAttempts: 15
+  redis:
+    prefix: agp
+
+platform:
+  api:
+    internal: http://api.salsaomni.svc.cluster.local
+    url: https://site-local.pulpobet.com:8446
+    private-key: 9886ab55c7bd54a6ac78789f876ec0d5
+    verbose: ab55c7bd54a6ac78
+
+powerbi:
+  url: https://login.microsoftonline.com/7b6923e7-226a-42b0-b4da-3829b8dfd5fa
+  body-params:
+    grant_type: client_credentials
+    client_secret: P.h8Q~~~1kuQL8v8cQb6YTQF7Iumw9TXHjwIUcZw
+    client_id: d3dc7b8e-1034-42e1-a429-03d4bb2e38ba
+    scope: https://analysis.windows.net/powerbi/api/.default
+
+queue:
+  name:
+    createDeposit: CreateDepositQueue
+    createWithdraw: CreateWithdrawQueue
+    createUser: CreateUserQueue
