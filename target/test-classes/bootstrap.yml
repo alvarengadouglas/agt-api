@@ -1,6 +1,0 @@
-embedded:
-  mssqlserver:
-    dockerImage: mcr.microsoft.com/mssql/server:2017-latest
-    accept-licence: true
-    enabled: true
-    reuse-container: true
